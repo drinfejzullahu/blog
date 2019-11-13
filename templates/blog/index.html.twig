@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Your Posts{% endblock %}
+
+{% block body %}
+    <h1 class = "mb-5">Your Posts</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Body</th>
+                <th>Private</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for blog in blogs %}
+            {% if app.user.id == blog.userId.id %}
+            <tr>
+                <td>{{ blog.id }}</td>
+                <td>{{ blog.title }}</td>
+                <td>{{ blog.body }}</td>
+                <td>{{ blog.private ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a class = "btn btn-primary"  href="{{ path('blog_show', {'id': blog.id}) }}">Show</a>
+                    <a class = "btn btn-secondary" href="{{ path('blog_edit', {'id': blog.id}) }}">Edit</a>
+                </td>
+            </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('blog_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    {% if app.user.admin == 1 %}
+    <h1 class="display-4 ">Users</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.password }}</td>
+                <td>
+                    <a class="btn btn-default" href="{{ path('user_show', {'id': user.id}) }}">Show</a>
+                    <a class="btn btn-default" href="{{ path('user_edit', {'id': user.id}) }}">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('user_new') }}">Create New</a>
+    {% else %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ app.user.id }}</td>
+            <td>{{ app.user.name }}</td>
+            <td>{{ app.user.username }}</td>
+            <td>{{ app.user.email }}</td>
+
+            <td>
+                <a class="btn btn-default" href="{{ path('user_show', {'id': app.user.id}) }}">Show</a>
+                <a class="btn btn-default" href="{{ path('user_edit', {'id': app.user.id}) }}">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+    {% endif %}
+{% endblock %}

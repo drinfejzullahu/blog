@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BaseController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+
+
+    {% for blog in blogs %}
+        {% if app.user %}
+            {% if app.user.admin %}
+                <div class="card mb-3">
+                    <div class="card-header">
+
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ blog.title }}</h5>
+                        <p class="card-text">{{ blog.body }}</p>
+                        <a class="btn btn-primary" href="{{ path('blog_show', {'id': blog.id}) }}">Show</a>
+
+
+                    </div>
+                </div>
+            {% endif %}
+
+
+            {% if blog.private == false %}
+
+                <div class="card mb-3">
+                    <div class="card-header">
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ blog.title }}</h5>
+                        <p class="card-text">{{ blog.body }}</p>
+                        <a class="btn btn-primary" href="{{ path('blog_show', {'id': blog.id}) }}">Show</a>
+
+
+                    </div>
+                </div>
+
+            {% else %}
+            {% endif %}
+        {% endif %}
+
+
+    {% endfor %}
+{% endblock %}
