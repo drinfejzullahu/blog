@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Blog;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,7 +18,10 @@ class BlogType extends AbstractType
         $builder
             ->add('title',TextType::class,array('attr'=>array('class'=>'form-control')))
             ->add('body',TextareaType::class,array('attr'=>array('class'=>'form-control')))
-            ->add('private',null,array('attr'=>array('class'=>'form-check-input ml-2 mt-2' )));
+            ->add('private',null,array('attr'=>array('class'=>'form-check-input ml-2 mt-2' )))
+            ->add('photoPath',FileType::class,array('label' => 'Photo','data_class'=>null ));
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

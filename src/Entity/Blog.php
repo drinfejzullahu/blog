@@ -36,6 +36,11 @@ class Blog
      */
     private $userId;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photoPath;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +90,18 @@ class Blog
     public function setUserId(?User $userId): self
     {
         $this->userId = $userId;
+
+        return $this;
+    }
+
+    public function getPhotoPath(): ?string
+    {
+        return $this->photoPath;
+    }
+
+    public function setPhotoPath(?string $photoPath): self
+    {
+        $this->photoPath = $photoPath;
 
         return $this;
     }

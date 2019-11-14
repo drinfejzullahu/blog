@@ -3,60 +3,82 @@
 {% block title %}Hello BaseController!{% endblock %}
 
 {% block body %}
+    {% include("/inc/slider.html.twig") %}
     <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
-
         .example-wrapper code {
             background: #F5F5F5;
             padding: 2px 6px;
         }
     </style>
 
+    <div class="row">
+        <div class="card col-8 ml-5 mb-3">
+            {% for blog in blogs %}
+                {% if app.user %}
+
+                {% endif %}
+                {% if blog.private == false %}
+{#                    <div class="card-body">#}
+{#                        <img src="images/{{ blog.photoPath }}" />#}
+
+{#                        <h5 class="card-title">{{ blog.title }}</h5>#}
+{#                        <p class="card-text">{{ blog.body }}</p>#}
+{#                        <a class="btn btn-primary" href="{{ path('blog_show', {'id': blog.id}) }}">Show</a>#}
+{#                    </div>#}
 
 
-    {% for blog in blogs %}
-        {% if app.user %}
-            {% if app.user.admin %}
-                <div class="card mb-3">
-                    <div class="card-header">
-
-
+                    <div class="card mb-3">
+                        <img src="images/{{ blog.photoPath }}" class="card-img-top " style="height: 300px" />
+                        <div class="card-body">
+                            <h5 class="card-title">{{ blog.title }}</h5>
+                            <p class="card-text">{{ blog.body }}</p>
+                            <a class="btn btn-primary" href="{{ path('blog_show', {'id': blog.id}) }}">Show</a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ blog.title }}</h5>
-                        <p class="card-text">{{ blog.body }}</p>
-                        <a class="btn btn-primary" href="{{ path('blog_show', {'id': blog.id}) }}">Show</a>
 
 
-                    </div>
-                </div>
-            {% endif %}
+                    <hr/>
+                {% else %}
+                    {% if app.user %}
+                        {% if app.user.admin %}
 
 
-            {% if blog.private == false %}
-
-                <div class="card mb-3">
-                    <div class="card-header">
-
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ blog.title }}</h5>
-                        <p class="card-text">{{ blog.body }}</p>
-                        <a class="btn btn-primary" href="{{ path('blog_show', {'id': blog.id}) }}">Show</a>
 
 
-                    </div>
-                </div>
+                            <div class="card mb-3">
+                                <img src="images/{{ blog.photoPath }}" class="card-img-top " style="height: 300px" />
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ blog.title }}</h5>
+                                    <p class="card-text">{{ blog.body }}</p>
+                                    <a class="btn btn-primary" href="{{ path('blog_show', {'id': blog.id}) }}">Show</a>
+                                </div>
+                            </div>
 
-            {% else %}
-            {% endif %}
-        {% endif %}
 
 
-    {% endfor %}
+
+{#                            <div class="card-header">#}
+{#                                <img src="images/lock-locked-2x.png"/>#}
+
+{#                            </div>#}
+{#                            <div class="card-body">#}
+{#                                <img src="images/{{ blog.photoPath }}" />#}
+
+{#                                <h5 class="card-title">{{ blog.title }}</h5>#}
+{#                                <p class="card-text">{{ blog.body }}</p>#}
+{#                                <a class="btn btn-primary" href="{{ path('blog_show', {'id': blog.id}) }}">Show</a>#}
+{#                            </div>#}
+                            <hr/>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="col-3 mr-4 mb-3">
+            {% include('inc/card.html.twig') %}
+        </div>
+    </div>
 {% endblock %}
+
+
+

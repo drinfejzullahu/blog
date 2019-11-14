@@ -34,3 +34,4 @@ security:
         - { path: ^/user/new, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/blog/new, roles: ROLE_USER }
         - { path: ^/user, roles: ROLE_USER }
+        - { path: ^/blog, roles: ROLE_USER }

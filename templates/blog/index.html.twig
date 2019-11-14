@@ -6,13 +6,12 @@
     <h1 class = "mb-5">Your Posts</h1>
 
     <table class="table">
-        <thead>
+        <thead class = "thead-light">
             <tr>
-                <th>Id</th>
-                <th>Title</th>
+                <th style = "width:200px">Title</th>
                 <th>Body</th>
-                <th>Private</th>
-                <th>actions</th>
+                <th style = "width:200px">Private</th>
+                <th style = "width:200px">actions</th>
             </tr>
         </thead>
         <tbody>
@@ -20,13 +19,13 @@
         {% for blog in blogs %}
             {% if app.user.id == blog.userId.id %}
             <tr>
-                <td>{{ blog.id }}</td>
+
                 <td>{{ blog.title }}</td>
                 <td>{{ blog.body }}</td>
                 <td>{{ blog.private ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a class = "btn btn-primary"  href="{{ path('blog_show', {'id': blog.id}) }}">Show</a>
-                    <a class = "btn btn-secondary" href="{{ path('blog_edit', {'id': blog.id}) }}">Edit</a>
+                    <a class = "btn btn-primary mb-3 w-75"  href="{{ path('blog_show', {'id': blog.id}) }}">Show</a>
+                    <a class = "btn btn-secondary w-75 " href="{{ path('blog_edit', {'id': blog.id}) }}">Edit</a>
                 </td>
             </tr>
             {% endif %}

@@ -1,0 +1,25 @@
+body{
+    background-color:#f0f7f7;
+}
+
+.slider{
+    height:650px;
+}
+
+@media (min-width: 1500px) {
+    .slider{
+        height:800px
+    }
+}
+@media (max-width: 1501px) {
+    .slider{
+        height:550px
+
+    }
+}
+
+@media (max-width: 780px) {
+    .slider{
+        height:450px
+    }
+}

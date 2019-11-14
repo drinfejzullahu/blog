@@ -40,8 +40,12 @@ class BlogController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $filename = $request->files->get('blog')['photoPath']->getClientOriginalName();
+
             $entityManager = $this->getDoctrine()->getManager();
             $blog->setUserId($this->getUser());
+            $blog->setPhotoPath($filename);
             $entityManager->persist($blog);
             $entityManager->flush();
 
@@ -73,7 +77,14 @@ class BlogController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $filename = $request->files->get('blog')['photoPath']->getClientOriginalName();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $blog->setUserId($this->getUser());
+            $blog->setPhotoPath($filename);
+//            $entityManager->persist($blog);
+            $entityManager->flush();
+//            $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('blog_index');
         }

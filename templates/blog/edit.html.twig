@@ -3,11 +3,14 @@
 {% block title %}Edit Blog{% endblock %}
 
 {% block body %}
+
     <h1 class = "mb-5">Edit Blog</h1>
 
     {{ include('blog/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a class = "btn btn-primary" href="{{ path('blog_index') }}">Back</a>
+
+    <a class = "mt-3 btn btn-primary" href="{{ path('blog_index') }}">Back</a>
 
     {{ include('blog/_delete_form.html.twig') }}
+
 {% endblock %}
