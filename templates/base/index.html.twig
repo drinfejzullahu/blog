@@ -47,6 +47,9 @@
 
                             <div class="card mb-3">
                                 <img src="images/{{ blog.photoPath }}" class="card-img-top " style="height: 300px" />
+                                <div class="card-header">
+                                    <img src="images/lock-locked-2x.png"/>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title">{{ blog.title }}</h5>
                                     <p class="card-text">{{ blog.body }}</p>
@@ -73,9 +76,14 @@
                     {% endif %}
                 {% endif %}
             {% endfor %}
+            <div class = "navigation align-self-center ">
+                {{ knp_pagination_render(blogs) }}
+            </div>
+
         </div>
         <div class="col-3 mr-4 mb-3">
             {% include('inc/card.html.twig') %}
+
         </div>
     </div>
 {% endblock %}

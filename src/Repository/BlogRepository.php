@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
-use App\Entity\Blog;
+use App\Entity\Blog as Blog;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @method Blog|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,9 +16,15 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class BlogRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+
+    protected $em;
+    protected $container;
+
+    public function __construct(ManagerRegistry $registry,EntityManagerInterface $entityManager,ContainerInterface $container)
     {
         parent::__construct($registry, Blog::class);
+        $this->em=$entityManager;
+        $this->container=$container;
     }
 
     // /**
@@ -47,4 +55,22 @@ class BlogRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function returnData($request)
+    {
+        $em=$this->em;
+        $container = $this->container;
+
+
+        $query = $em->createQuery('select blog.id , blog.title , blog.body , blog.private , blog.photoPath from App\Entity\Blog blog');
+//        $result = $query->execute();
+        $paginator = $container->get('knp_paginator');
+        $result = $paginator->paginate(
+            $query,
+            $request->query->getInt('page',1),
+            $request->query->getInt('limit',5)
+        );
+        return $result;
+
+    }
 }

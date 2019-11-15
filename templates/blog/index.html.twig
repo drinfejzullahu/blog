@@ -8,6 +8,7 @@
     <table class="table">
         <thead class = "thead-light">
             <tr>
+                <th style = "width:200px">Photo</th>
                 <th style = "width:200px">Title</th>
                 <th>Body</th>
                 <th style = "width:200px">Private</th>
@@ -19,7 +20,7 @@
         {% for blog in blogs %}
             {% if app.user.id == blog.userId.id %}
             <tr>
-
+                <td> <img style="width:400px;height: 400px" src = "../images/{{ blog.photoPath }}"/> </td>
                 <td>{{ blog.title }}</td>
                 <td>{{ blog.body }}</td>
                 <td>{{ blog.private ? 'Yes' : 'No' }}</td>
