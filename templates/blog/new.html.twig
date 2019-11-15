@@ -3,9 +3,9 @@
 {% block title %}New Blog{% endblock %}
 
 {% block body %}
-    <h1 class = "mb-5">Create new Blog</h1>
+    <h1 align="center" class="h3 mb-4 mt-2 font-weight-normal">Create new Blog</h1>
+
 
     {{ include('blog/_form.html.twig') }}
 
-    <a class="btn btn-primary mt-2" href="{{ path('index_page') }}">Back</a>
 {% endblock %}

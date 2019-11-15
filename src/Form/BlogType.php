@@ -17,7 +17,7 @@ class BlogType extends AbstractType
     {
         $builder
             ->add('title',TextType::class,array('attr'=>array('class'=>'form-control')))
-            ->add('body',TextareaType::class,array('attr'=>array('class'=>'form-control')))
+            ->add('body',TextareaType::class,array('attr'=>array('class'=>'form-control mb-3')))
             ->add('private',null,array('attr'=>array('class'=>'form-check-input ml-2 mt-2' )))
             ->add('photoPath',FileType::class,array('attr'=>array('class'=>'ml-2 mr-2 mt-3') , 'label' => 'Photo','data_class'=>null ));
 

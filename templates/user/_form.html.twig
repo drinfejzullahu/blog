@@ -1,4 +1,15 @@
+<style>
+    .my-style{
+        height: 410px;
+    }
+</style>
+
+<div class="row justify-content-md-center mt-5">
+    <div class="col-5 my-style ">
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn btn-primary mt-3">{{ button_label|default('Save') }}</button>
+
+    <button style = "width:100%"  class="btn btn-primary mt-5 ">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+    </div>
+</div>
