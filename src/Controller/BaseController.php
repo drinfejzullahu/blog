@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Repository\BlogRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,5 +25,7 @@ class BaseController extends AbstractController
 
         ]);
     }
+
+
 }
 
